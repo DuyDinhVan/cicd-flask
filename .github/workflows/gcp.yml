@@ -24,7 +24,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: gcr.io/cicd-flask:v1
+          tags: gcr.io/carbide-server-378603/cicd-flask:v1
 
       - name: Authenticate with GCR
         run: |
