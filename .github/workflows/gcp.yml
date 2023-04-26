@@ -1,0 +1,28 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: ./docker/.
+        push: true
+        tags: cicd-flask:${{ github.sha }}
+
+    # - name: Set up Google Cloud SDK
+    #   uses: google-github-actions/setup-gcloud@v0.5.0
+    #   with:
+    #     version: '337.0.0'
+    #     project_id: carbide-server-378603
+    #     credentials: ${{ secrets.GCP_SA_KEY }}
