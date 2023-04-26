@@ -16,6 +16,9 @@ jobs:
     - name: Build Docker image
       run: docker build -t ghcr.io/duydinhvan/cicd-flask:v1 .
 
+    - name: Echo GITHUB_TOKEN
+      run: echo ${{ secrets.GITHUB_TOKEN }}
+
     - name: Log in to GitHub Container Registry
       run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u duydinhvan --password-stdin
 
