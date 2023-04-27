@@ -44,9 +44,10 @@ jobs:
       #     push: true
       #     tags: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:lastest
 
-      - name: Build Docker Image
-        run: docker build -t ${{ env.SERVICE }}:latest ./docker/.
+      # - name: Build Docker Image
+      #   run: docker build -t ${{ env.SERVICE }}:latest ./docker/.
 
       - name: Push Docker Image to Artifact Registry
         run: |-
+          docker build -t ${{ env.SERVICE }}:latest ./docker/.
           docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/images/${{ env.SERVICE }}:lastest
