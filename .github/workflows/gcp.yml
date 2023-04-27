@@ -49,5 +49,4 @@ jobs:
 
       - name: Push Docker Image to Artifact Registry
         run: |-
-          docker tag ${{ env.SERVICE }}:lastest ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/images/${{ env.SERVICE }}:lastest
           docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/images/${{ env.SERVICE }}:lastest
