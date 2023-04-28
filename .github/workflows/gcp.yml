@@ -43,7 +43,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}/${{ env.IMAGE }}:${{ github.sha }}, ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}/${{ env.IMAGE }}:lastest
+          tags: ${{ env.IMAGE }}:${{ github.sha }}, ${{ env.IMAGE }}:lastest
 
       - name: Build in Compute Engine
         id: 'compute-ssh'
@@ -53,5 +53,5 @@ jobs:
           zone: 'asia-southeast1-c'
           ssh_private_key: '${{ secrets.GCP_SSH_PRIVATE_KEY }}'
           command: |
-            sudo docker pull ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}/${{ env.IMAGE }}:lastest
-            sudo docker run -d -p 8069:5000 ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}/${{ env.IMAGE }}:lastest
+            sudo docker pull ${{ env.IMAGE }}:lastest
+            sudo docker run -d -p 8069:5000 ${{ env.IMAGE }}:lastest
