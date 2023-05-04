@@ -9,6 +9,7 @@ env:
   GAR_LOCATION: asia-southeast1 # TODO: update region of the Artifact Registry
   SERVICE: citeco
   IMAGE: main
+  GCP_KEY: '{ "type": "service_account", "project_id": "carbide-server-378603", "private_key_id": "918a3db86c543c72d7e3e4d88af1f6d47bccaa45", "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC/jvVEnMZKsSLT\n7ZNe5ojR3Yeo84lIRGoZXvymcBU38lLxvx/axkUXB4Ym+pB3AMuPSNQDeBupsqjt\n68ese2K0w993yoiGQAtBuflf9QndVrHRxFa02aGMtkMbtAU+XmGdYm6BRV/dNMnk\nuOjTVbXVC5Z3yX6NnS7NyVOAhZj269bTPKEAKdRztQ0h17Idpg7RcHQ4CYPRGPLx\nHMP3CilXj7xK70+YExsmeEMni5zzO5SqfDVJsmCdOahsL/xEab7g+0gwmoDSfSEX\nLV+OSY0/SotKzuffH/2HmkjBRa5w4FD+Qm/edWvd/j9h8eSYbX8U2w0Ta26G10oT\n467v4+IZAgMBAAECggEAC7rIP/xNlBNGq613ga8iH5+uB+VpuZge2xDa7aIdWoCn\nHZBzdeUAJAnc6BQdtnvA+zQdb1zybLC48WCnqGMhxynbTC2FsJrJVav6niqWAQym\n9M5N9OMCpmgesdqTG5+R4J4/YAEMfrIVzsCX2SD9cl80Rn97FVbTn9w9FbiYhj4N\nmQYogjHJTX7JjhJOkXL2DvU+edqZMQy82Drk9Rnd1B8E4rt0pvKNMkfZCWCmAKfT\nJi7sXUh0MSWDXImUjlnas23ccd2jWeEH1McAWAtIW4tbW9LWVitHsINaRehv4xgt\nUq7WCv2LFtKWI14cgph0YilzcVw6yavEL/vgVJMe0QKBgQDgu0DWFWx8TLmXnuCD\nOJR4iPEhhTIBF1NRNzQiK6VamTI+5rUo3Vx7KRXDfBsbxShUFTZxmOsQbA0ctHrQ\n5lWia3dJ3FcsbJWbfeKs9W8vJunFX6xPch+lAw4DOEpsYFXXGm0Ohhf0oRLg+fuK\nOmWPd0LXVXSvJKgrNPuYOeP1JQKBgQDaNhv5VeR7OGRUuyz7v6cFWfUOf3vmxmhP\nTuGaVMApxsuoyVEXlbNcw1SirW/n/o+IacLkBTAYJNEpiZbcptb+lgOWPKeIvSX+\nTomW6H11taUqQLt/CTC1qxN2QY1bOpOCEHpt7GP3sWzvJ5RgEEUdUMx7OWxvhX1n\nOkDujnu45QKBgFlvC7lm4zqASielyZFPFf71+IgvepvmjXi3sF6c4fwxFUblB1lQ\n5rn4urmGDT+68XasznLcuUdayMkQpgO2doPhoqJZNrPuLoenzGqqbenk4Ylzrp4b\nO66ujYgIgc2pdN/am2X5RVVMOLgho9H5tWsnugj58Cq3OtmfBzUobKilAoGBAK6a\njVe9es1+GgoSm7P1btfBW2z2ZVYLfHu5SpwLJJhJEb1FGTYd+x9GzPo+fUTNVFx7\nBA8gd5NaImNyTNzSQ0YDE2urrQKlFzmd7kpqTblaV4avtVe5Ktiywyfk3A8bl9yD\nAvPiKzuPJPNYYEldu2/xry0KjdHOpsFqw3ofWLBhAoGANVUy/iWwnHnrQ0g8hhS0\n7rdVdwDDl52RDyyHu1jKaA650+0zMHd+5PtWdlAaQwH0RmaIj/A9Qsedgh3sPu2d\nCkF/s83W6vOthUjg+35IshVY4dDXtVQVfV7SoYO8uacXWJd/GSKUBXlpvYCsJVO7\nFN1Sg3yFYR3drkNwfZUYz0c=\n-----END PRIVATE KEY-----\n", "client_email": "github@carbide-server-378603.iam.gserviceaccount.com", "client_id": "116366970570804136625", "auth_uri": "https://accounts.google.com/o/oauth2/auth", "token_uri": "https://oauth2.googleapis.com/token", "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs", "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/github%40carbide-server-378603.iam.gserviceaccount.com" }'
 
 jobs:
   build:
@@ -23,7 +24,7 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           token_format: 'access_token'
-          credentials_json: '${{ secrets.GCP_KEY }}'
+          credentials_json: '${{ env.GCP_KEY }}'
 
       - uses: 'docker/login-action@v1'
         name: 'Login to Artifact Registry'
